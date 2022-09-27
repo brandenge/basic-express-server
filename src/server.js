@@ -10,16 +10,25 @@ const PORT = process.env.PORT || 3002;
 
 const app = express();
 
+app.use(express.json());
 app.use(logger);
-app.use(validator);
 
 app.get('/', (req, res, next) => {
-  res.status(200).send('Hello World');
+  res.status(200).send('Hello World from a basic express server!');
 });
 
-app.get('/person', (req, res, next) => {
-  let { person } = req.query;
-  console.log('person', person);
+app.get('/person', validator, (req, res, next) => {
+  res.status(200).send({
+    name: req.query.name,
+  });
+});
+
+app.get('/bad-route-error-string', (req, res, next) => {
+  next('This is a bad route that throws an error string');
+});
+
+app.get('/bad-route-error-object', (req, res, next) => {
+  throw new Error('This is a bad route that throws an error object');
 });
 
 app.use('*', notFound);
