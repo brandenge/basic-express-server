@@ -9,7 +9,7 @@
 This lab demonstrates how to test an Express server, including mocking the server for testing, and testing its middleware.
 
 - [CI/CD GitHub Actions](https://github.com/brandenge/basic-express-server/actions)
-- [Back-end server url production](https://server-deployment-pract-prod.herokuapp.com/)
+- [Back-end server url production](https://basic-express-server-88.herokuapp.com/)
 
 ### Setup
 
@@ -23,6 +23,8 @@ This lab demonstrates how to test an Express server, including mocking the serve
 
 - GET : `/` - root.
 - GET : `/person` - checks the query string for a name property, returns a json object with a name property and the name.
+- GET : `/bad-route-error-string` - calls next with an error string. Used to test the validator.
+- GET : `/bad-route-error-object` - throws a new error object. Used to test the validator.
 - GET : `*` - catch-all route which always responds with a 404 Not Found error.
 
 #### Tests
